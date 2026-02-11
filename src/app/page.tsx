@@ -1,65 +1,115 @@
-import Image from "next/image";
+"use client";
+
+import { Background } from "@/components/Background";
+import { ScreenWrapper } from "@/components/ScreenWrapper";
+import { Particles } from "@/components/Particles";
+import { motion, useScroll, useSpring, useMotionValueEvent, useTransform } from "framer-motion";
+import { ArrowDown } from "lucide-react";
+import { useRef, useState } from "react";
+import { HugMeter } from "@/components/HugMeter";
+import { ChaoticMode } from "@/components/ChaoticMode";
+import { FloatingText } from "@/components/FloatingText";
+import { SpinningWheel } from "@/components/SpinningWheel";
+import { FloatingMessages } from "@/components/FloatingMessages";
 
 export default function Home() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [bgIntensity, setBgIntensity] = useState<"normal" | "high" | "chaos">("normal");
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main ref={containerRef} className="relative h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth">
+      <Background intensity={bgIntensity} />
+
+
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <Particles count={30} />
+      </div>
+
+      {/* Screen 1: Entry */}
+      <ScreenWrapper className="snap-start z-10">
+        <motion.h1
+          className="text-6xl md:text-8xl font-bold mb-8 text-black drop-shadow-sm"
+          animate={{ rotate: [0, 2, -2, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        >
+          HEY YOU 🤍
+        </motion.h1>
+        <motion.p
+          className="text-2xl md:text-4xl font-medium text-black/80 mb-12"
+          animate={{ y: [0, -5, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          I couldn’t stop myself…
+        </motion.p>
+        <motion.div
+          animate={{ y: [0, 10, 0], opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          <ArrowDown className="w-8 h-8 text-black/60" />
+        </motion.div>
+      </ScreenWrapper>
+
+      {/* Screen 2: Warning */}
+      <ScreenWrapper className="snap-start z-10 h-screen">
+        <motion.h2 className="text-4xl md:text-6xl font-bold text-black mb-6 leading-tight">
+          I have <br />
+          <motion.span
+            className="inline-block text-red-600 text-6xl md:text-9xl my-4"
+            animate={{ scale: [1, 1.1, 1], rotate: [-2, 2, -2] }}
+            transition={{ duration: 0.5, repeat: Infinity }}
+          >
+            WAY TOO MANY
+          </motion.span>
+          <br /> HUGS FOR YOU.
+        </motion.h2>
+      </ScreenWrapper>
+
+      {/* Screen 3: Hug Meter */}
+      <ScreenWrapper className="snap-start z-20 h-screen">
+        <HugMeter
+          onComplete={() => {
+            setBgIntensity("chaos");
+          }}
+          setBgIntensity={setBgIntensity}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </ScreenWrapper>
+
+      {/* Screen 4: Spinning Wheel */}
+      <ScreenWrapper className="snap-start z-20 h-screen">
+        <SpinningWheel />
+      </ScreenWrapper>
+
+      {/* Screen 5: Chaotic Mode */}
+      {bgIntensity === "chaos" ? (
+        <ScreenWrapper className="snap-start z-20 h-screen">
+          <ChaoticMode />
+        </ScreenWrapper>
+      ) : (
+        <ScreenWrapper className="snap-start z-20 h-screen flex flex-col justify-center">
+          <h2 className="text-4xl font-bold text-black/50">Unlock Chaos Mode first! ⬆️</h2>
+          <p className="text-xl text-black/40 mt-2">Fill the Hug Meter</p>
+        </ScreenWrapper>
+      )}
+
+      {/* Screen 6: Floating Text */}
+      <ScreenWrapper className="snap-start z-20 h-screen">
+        <FloatingText />
+      </ScreenWrapper>
+
+      {/* Screen 7: Sign Off */}
+      <ScreenWrapper className="snap-start z-20 h-screen pb-20 relative">
+        <FloatingMessages />
+        <motion.div
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="text-9xl mb-8"
+        >
+          🤗
+        </motion.div>
+        <h2 className="text-5xl md:text-7xl font-bold mb-4 drop-shadow-sm">Happy Hug Day 🤍</h2>
+        <p className="text-xl md:text-2xl opacity-75">Come back whenever you need one.</p>
+      </ScreenWrapper>
+
+    </main>
   );
 }
