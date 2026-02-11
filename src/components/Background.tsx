@@ -36,7 +36,7 @@ export const Background = ({
                 src="/bghearts.jpg"
                 alt="Hearts Background"
                 fill
-                className="object-cover opacity-60"
+                className="object-cover opacity-30"
                 priority /* Ensure it loads fast */
             />
             <motion.div

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 50" fill="none">
+  <rect x="0" y="0" width="140" height="50" fill="url(#washiGradient)" fill-opacity="0.8"/>
+  <rect x="0" y="0" width="140" height="50" fill="url(#washiPattern)" fill-opacity="0.2"/>
+  <defs>
+    <linearGradient id="washiGradient" x1="0" y1="0" x2="140" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFDADA"/>
+      <stop offset="1" stop-color="#FFCBCB"/>
+    </linearGradient>
+    <pattern id="washiPattern" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+      <rect width="3" height="6" fill="#DCADAD"/>
+    </pattern>
+  </defs>
+</svg>

@@ -21,17 +21,18 @@ export const FloatingMessages = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setFloatingTexts(prev => [
-                ...prev.slice(-15),
+                ...prev.slice(-8), // Keep fewer messages
                 {
                     id: Date.now(),
-                    x: Math.random() * 80 + 10,
+                    // Ensure spacing: alternate sides or random but with clear margins
+                    x: Math.random() * 60 + 20, // Keep within 20-80% to avoid edges
                     text: messages[Math.floor(Math.random() * messages.length)],
                     rotation: Math.random() * 40 - 20, // -20 to 20 deg tilt
                     scale: Math.random() * 0.5 + 0.8, // 0.8 to 1.3 scale
                     isSticker: Math.random() > 0.6 // 40% chance of being a pure sticker style
                 }
             ]);
-        }, 1200);
+        }, 2000); // Slower generation
         return () => clearInterval(interval);
     }, []);
 

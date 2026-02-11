@@ -28,11 +28,11 @@ export default function Home() {
       {/* Screen 1: Entry */}
       <ScreenWrapper className="snap-start z-10">
         <motion.h1
-          className="text-6xl md:text-8xl font-bold mb-8 text-black drop-shadow-sm"
+          className="font-hand text-6xl md:text-8xl font-bold mb-8 text-black drop-shadow-sm"
           animate={{ rotate: [0, 2, -2, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
-          HEY YOU 🤍
+          HEY YOU ❤️
         </motion.h1>
         <motion.p
           className="text-2xl md:text-4xl font-medium text-black/80 mb-12"
@@ -41,6 +41,41 @@ export default function Home() {
         >
           I couldn’t stop myself…
         </motion.p>
+
+        {/* Intro Stickers */}
+        <div className="absolute inset-0 pointer-events-none">
+          <motion.img
+            src="/stickers/ok.png"
+            className="absolute top-24 left-10 w-24 h-auto opacity-90"
+            animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.img
+            src="/stickers/star.svg"
+            className="absolute top-40 right-10 w-12 h-12 opacity-80"
+            animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+          />
+          <motion.img
+            src="/stickers/okk.png"
+            className="absolute bottom-32 right-8 w-28 h-auto opacity-85"
+            animate={{ y: [0, 10, 0], rotate: [-5, 5, -5] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.img
+            src="/stickers/sparkle.svg"
+            className="absolute top-20 left-1/2 w-10 h-10 opacity-70"
+            animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.img
+            src="/stickers/okkk.png"
+            className="absolute bottom-20 left-16 w-32 h-auto opacity-90"
+            animate={{ rotate: [5, -5, 5] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </div>
+
         <motion.div
           animate={{ y: [0, 10, 0], opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 1.5, repeat: Infinity }}

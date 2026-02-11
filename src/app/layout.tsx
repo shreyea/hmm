@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Patrick_Hand } from "next/font/google";
+import { Patrick_Hand, Inter } from "next/font/google";
 import "./globals.css";
 
 const patrickHand = Patrick_Hand({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-patrick-hand",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -20,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${patrickHand.variable} font-sans antialiased overflow-hidden`}>
+      <body className={`${patrickHand.variable} ${inter.variable} font-sans antialiased overflow-hidden`}>
         {children}
       </body>
     </html>
