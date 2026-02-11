@@ -49,15 +49,15 @@ export const FloatingText = () => {
                     <motion.span
                         key={i}
                         className="inline-block"
-                        initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{
-                            opacity: i < visibleChars ? 1 : 0,
-                            filter: i < visibleChars ? "blur(0px)" : "blur(10px)",
-                            y: i < visibleChars ? 0 : 20,
-                            scale: i === visibleChars - 1 ? 1.2 : 1,
-                            color: i < visibleChars ? "#db2777" : "transparent"
+                            opacity: i < visibleChars ? 1 : 0.2,
+                            y: i < visibleChars ? 0 : 10,
+                            scale: i === visibleChars - 1 ? 1.3 : 1,
+                            color: i < visibleChars ? "#db2777" : "transparent",
+                            textShadow: i < visibleChars ? "0px 0px 0px transparent" : "0px 0px 8px rgba(219, 39, 119, 0.5)"
                         }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.2 }}
                     >
                         {char === " " ? "\u00A0" : char}
                     </motion.span>

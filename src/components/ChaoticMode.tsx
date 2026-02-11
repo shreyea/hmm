@@ -14,15 +14,15 @@ export const ChaoticMode = () => {
         damping: 50,
         stiffness: 400
     });
-    const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
-        clamp: false
+    const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 2], {
+        clamp: true
     });
 
     const [popups, setPopups] = useState<{ id: number; x: number; y: number; text: string }[]>([]);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            if (Math.random() > 0.7) {
+            if (Math.random() > 0.6) {
                 setPopups(prev => [
                     ...prev.slice(-5),
                     {
@@ -38,39 +38,48 @@ export const ChaoticMode = () => {
     }, []);
 
     return (
-        <div ref={containerRef} className="relative w-full py-20 overflow-hidden">
-            <motion.div className="flex flex-col gap-10 items-center justify-center min-h-screen relative z-10">
+        <div ref={containerRef} className="relative w-full py-20 overflow-hidden bg-black">
+            {/* Light Sticker */}
+            <motion.img
+                src="/stickers/light.png"
+                className="absolute top-0 right-0 w-32 md:w-48 z-50 pointer-events-none"
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.5 }}
+            />
+
+            <motion.div className="flex flex-col gap-8 items-center justify-center min-h-screen relative z-10">
                 <motion.div
-                    className="absolute inset-0 z-0 opacity-20"
+                    className="absolute inset-0 z-0 opacity-30"
                     style={{
-                        backgroundImage: "linear-gradient(45deg, #ff0000 25%, transparent 25%, transparent 75%, #ff0000 75%, #ff0000), linear-gradient(45deg, #ff0000 25%, transparent 25%, transparent 75%, #ff0000 75%, #ff0000)",
-                        backgroundSize: "60px 60px",
-                        backgroundPosition: "0 0, 30px 30px",
+                        backgroundImage: "radial-gradient(circle at center, #ff0000 0%, transparent 70%)",
                     }}
-                    animate={{ backgroundPosition: ["0px 0px", "60px 60px"] }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 />
 
                 <motion.h2
-                    className="text-7xl md:text-9xl font-black text-white text-center drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]"
+                    className="text-7xl md:text-9xl font-black text-white text-center drop-shadow-[0_0_15px_rgba(255,0,0,0.8)]"
                     style={{ skewX: velocityFactor }}
-                    animate={{ scale: [1, 1.1, 0.9, 1], rotate: [0, -2, 2, 0] }}
-                    transition={{ duration: 0.2, repeat: Infinity }}
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 0.5, repeat: Infinity }}
                 >
                     MORE LOVE
                 </motion.h2>
                 <motion.h2
-                    className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 text-center drop-shadow-sm border-4 border-white p-4"
-                    style={{ skewX: velocityFactor, x: useTransform(velocityFactor, v => v * 15) }}
-                    animate={{ x: [-10, 10, -10] }}
-                    transition={{ duration: 0.1, repeat: Infinity }}
+                    className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 text-center drop-shadow-sm border-y-4 border-white py-2"
+                    style={{ skewX: velocityFactor }}
+                    animate={{
+                        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                    }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                 >
                     EVEN MORE LOVE
                 </motion.h2>
                 <motion.div
                     className="text-6xl text-white font-bold tracking-widest"
-                    animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
-                    transition={{ duration: 0.3, repeat: Infinity }}
+                    animate={{ opacity: [0.5, 1, 0.5], y: [0, -10, 0] }}
+                    transition={{ duration: 0.5, repeat: Infinity }}
                 >
                     🔥🔥🔥🔥🔥
                 </motion.div>
