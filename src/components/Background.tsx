@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const gradients = [
-    "linear-gradient(to bottom right, rgba(255, 154, 158, 0.8), rgba(250, 208, 196, 0.8))", // Pink -> Peach
-    "linear-gradient(to bottom right, rgba(161, 140, 209, 0.8), rgba(251, 194, 235, 0.8))", // Purple -> Pink
-    "linear-gradient(to bottom right, rgba(250, 208, 196, 0.8), rgba(255, 209, 255, 0.8))", // Peach -> Light Pink
-    "linear-gradient(to bottom right, rgba(255, 236, 210, 0.8), rgba(252, 182, 159, 0.8))", // Light Orange -> Peach
+    "linear-gradient(to bottom right, rgba(255, 154, 158, 0.3), rgba(250, 208, 196, 0.3))", // Pink -> Peach
+    "linear-gradient(to bottom right, rgba(161, 140, 209, 0.3), rgba(251, 194, 235, 0.3))", // Purple -> Pink
+    "linear-gradient(to bottom right, rgba(250, 208, 196, 0.3), rgba(255, 209, 255, 0.3))", // Peach -> Light Pink
+    "linear-gradient(to bottom right, rgba(255, 236, 210, 0.3), rgba(252, 182, 159, 0.3))", // Light Orange -> Peach
 ];
 
 export const Background = ({
@@ -36,7 +36,7 @@ export const Background = ({
                 src="/bghearts.jpg"
                 alt="Hearts Background"
                 fill
-                className="object-cover opacity-30"
+                className="object-cover opacity-90"
                 priority /* Ensure it loads fast */
             />
             <motion.div

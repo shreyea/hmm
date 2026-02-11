@@ -114,19 +114,7 @@ export default function Home() {
         <SpinningWheel />
       </ScreenWrapper>
 
-      {/* Screen 5: Chaotic Mode */}
-      {bgIntensity === "chaos" ? (
-        <ScreenWrapper className="snap-start z-20 h-screen">
-          <ChaoticMode />
-        </ScreenWrapper>
-      ) : (
-        <ScreenWrapper className="snap-start z-20 h-screen flex flex-col justify-center">
-          <h2 className="text-4xl font-bold text-black/50">Unlock Chaos Mode first! ⬆️</h2>
-          <p className="text-xl text-black/40 mt-2">Fill the Hug Meter</p>
-        </ScreenWrapper>
-      )}
-
-      {/* Screen 6: Floating Text */}
+      {/* Screen 5: Floating Text */}
       <ScreenWrapper className="snap-start z-20 h-screen">
         <FloatingText />
       </ScreenWrapper>
